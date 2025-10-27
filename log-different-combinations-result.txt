@@ -1,0 +1,45 @@
+edit/update Product C
+
+Norwegian locale:
+2025-10-27T15:17:31.063+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : params: [_method:PUT, version:0, name:Product C, stock:1, itemValue:−12,34, controller:item, action:update, id:3]
+2025-10-27T15:17:31.063+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : RAW stock=(1)}
+2025-10-27T15:17:31.064+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : RAW stock bytes=31
+2025-10-27T15:17:31.064+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : RAW itemValue=(−12,34)}
+2025-10-27T15:17:31.065+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : RAW itemValue bytes=e2889231322c3334
+
+English locale:
+2025-10-27T15:18:21.951+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : params: [_method:PUT, version:0, name:Product C, stock:1, itemValue:-12.34, controller:item, action:update, id:3]
+2025-10-27T15:18:21.951+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : RAW stock=(1)}
+2025-10-27T15:18:21.952+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : RAW stock bytes=31
+2025-10-27T15:18:21.952+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : RAW itemValue=(-12.34)}
+2025-10-27T15:18:21.952+01:00 DEBUG 4094728 --- [nio-8080-exec-7] com.test.ItemController                  : RAW itemValue bytes=2d31322e3334
+
+
+Add Product D with negative numbers
+
+Norwegian locale:
+2025-10-27T15:38:53.699+01:00 DEBUG 4112296 --- [nio-8080-exec-1] com.test.ItemController                  : params: [name:Product D, stock:-1, itemValue:-2, controller:item, action:save]
+2025-10-27T15:38:53.699+01:00 DEBUG 4112296 --- [nio-8080-exec-1] com.test.ItemController                  : RAW stock=(-1)}
+2025-10-27T15:38:53.700+01:00 DEBUG 4112296 --- [nio-8080-exec-1] com.test.ItemController                  : RAW stock bytes=2d31
+2025-10-27T15:38:53.700+01:00 DEBUG 4112296 --- [nio-8080-exec-1] com.test.ItemController                  : RAW itemValue=(-2)}
+2025-10-27T15:38:53.700+01:00 DEBUG 4112296 --- [nio-8080-exec-1] com.test.ItemController                  : RAW itemValue bytes=2d32
+2025-10-27T15:38:53.701+01:00  WARN 4112296 --- [nio-8080-exec-1] org.hibernate.orm.deprecation            : HHH90000022: Hibernate's legacy org.hibernate.Criteria API is deprecated; use the JPA jakarta.persistence.criteria.CriteriaQuery instead
+2025-10-27T15:38:53.702+01:00 ERROR 4112296 --- [nio-8080-exec-1] com.test.ItemController                  : e: Validation Error(s) occurred during save():
+- Field error in object 'com.test.Item' on field 'stock': rejected value [-1]; codes [com.test.Item.stock.typeMismatch.error,com.test.Item.stock.typeMismatch,item.stock.typeMismatch.error,item.stock.typeMismatch,typeMismatch.com.test.Item.stock,typeMismatch.stock,typeMismatch.java.lang.Long,typeMismatch]; arguments [stock]; default message [Unable to parse number [-1]]
+- Field error in object 'com.test.Item' on field 'itemValue': rejected value [-2]; codes [com.test.Item.itemValue.typeMismatch.error,com.test.Item.itemValue.typeMismatch,item.itemValue.typeMismatch.error,item.itemValue.typeMismatch,typeMismatch.com.test.Item.itemValue,typeMismatch.itemValue,typeMismatch.java.math.BigDecimal,typeMismatch]; arguments [itemValue]; default message [Cannot invoke "Object.toString()" because "n" is null]
+
+
+Norwegian locale with positive stock (Long) and typographic minus on itemValue (BigDecimal):
+2025-10-27T15:40:33.926+01:00 DEBUG 4112296 --- [io-8080-exec-10] com.test.ItemController                  : params: [name:Product D, stock:1, itemValue:−2, controller:item, action:save]
+2025-10-27T15:40:33.926+01:00 DEBUG 4112296 --- [io-8080-exec-10] com.test.ItemController                  : RAW stock=(1)}
+2025-10-27T15:40:33.926+01:00 DEBUG 4112296 --- [io-8080-exec-10] com.test.ItemController                  : RAW stock bytes=31
+2025-10-27T15:40:33.926+01:00 DEBUG 4112296 --- [io-8080-exec-10] com.test.ItemController                  : RAW itemValue=(−2)}
+2025-10-27T15:40:33.926+01:00 DEBUG 4112296 --- [io-8080-exec-10] com.test.ItemController                  : RAW itemValue bytes=e2889232
+
+English locale:
+2025-10-27T15:35:11.203+01:00 DEBUG 4094728 --- [nio-8080-exec-8] com.test.ItemController                  : params: [name:Product D, stock:-1, itemValue:-2, controller:item, action:save]
+2025-10-27T15:35:11.203+01:00 DEBUG 4094728 --- [nio-8080-exec-8] com.test.ItemController                  : RAW stock=(-1)}
+2025-10-27T15:35:11.203+01:00 DEBUG 4094728 --- [nio-8080-exec-8] com.test.ItemController                  : RAW stock bytes=2d31
+2025-10-27T15:35:11.203+01:00 DEBUG 4094728 --- [nio-8080-exec-8] com.test.ItemController                  : RAW itemValue=(-2)}
+2025-10-27T15:35:11.204+01:00 DEBUG 4094728 --- [nio-8080-exec-8] com.test.ItemController                  : RAW itemValue bytes=2d32
+
